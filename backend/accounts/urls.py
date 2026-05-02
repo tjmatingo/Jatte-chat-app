@@ -1,6 +1,9 @@
 from django.urls import path
+from django.contrib.auth.views import LoginView
 # from .views import hello
 
+from .forms import LoginForm
+
 urlpatterns = [
-    # path('hello/', hello),
+    path('login/', LoginView.as_view(template_name='accounts/login.html', form_class=LoginForm), name="login")
 ]

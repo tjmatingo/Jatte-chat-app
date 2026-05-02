@@ -42,7 +42,7 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = 'chat-admin'
 LOGOUT_REDIRECT_URL = '/'
 
-# AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 INSTALLED_APPS = [
     'daphne',
@@ -60,8 +60,15 @@ INSTALLED_APPS = [
 
     'accounts',
     'jatte',
-
+    
+    # file upload management
+    'pyuploadcare.dj',
 ]
+
+UPLOADCARE = {
+    'pub_key': os.environ.get('UPLOADCARE_PUB_KEY', 'demopublickey'),
+    'secret': os.environ.get('UPLOADCARE_SECRET_KEY', 'demosecretkey')
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
