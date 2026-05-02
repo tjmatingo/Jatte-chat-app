@@ -22,6 +22,7 @@ const Home = () => {
     return (
         <div className="content">
             <h1 className="title">Home Page</h1>
+            
             <h3>{message}</h3>
         </div>
     );

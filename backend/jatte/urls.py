@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 # Registering the viewset with the requested variable name/endpoint
-router.register(r'messages', ChatMessageViewSet, basename='mainChat')
+router.register(r'message', ChatMessageViewSet, basename='mainChat')
 
 urlpatterns = [
     path('', include(router.urls)),

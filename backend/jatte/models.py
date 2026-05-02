@@ -5,12 +5,13 @@ from pyuploadcare.dj.models import ImageField # Or FileField for any file type
 
 # chatroom  model 
 class Chat(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
     participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='threads')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Thread {self.id}"
+        return f"{self.name}"
 
 class ChatMessage(models.Model):
     thread = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
