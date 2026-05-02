@@ -18,8 +18,12 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = 'chat-admin'
+LOGOUT_REDIRECT_URL = '/'
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
