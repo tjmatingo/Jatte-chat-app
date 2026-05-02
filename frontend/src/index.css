@@ -43,3 +43,7 @@ h5 {
 .content {
     @apply m-3 p-20;
 }
+
+.link {
+    @apply hover:overline hover:decoration-5 hover:decoration-sky-400 ;
+}
