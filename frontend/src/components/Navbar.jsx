@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 const Navbar = (props) => {
 
-    const {content} = props;
+    const {children} = props;
 
     return (
         <div>
@@ -15,7 +15,7 @@ const Navbar = (props) => {
 
                         <a href="/" className="p-1.5 pt-0">
                             <span className="sr-only">Your Company</span>
-                            <img src="../public/icons.svg" alt="" className="h-15 w-auto" />
+                            <img src="/icons.svg" alt="" className="h-15 w-auto" />
                         </a>
 
                         <Link to="/about" className="link pt-3 text-sm font-semibold text-primary hover:text-blue-200">About</Link>
@@ -30,7 +30,7 @@ const Navbar = (props) => {
                 </nav>
             </header>
 
-            {content}
+            {children}
 
         </div>
     );

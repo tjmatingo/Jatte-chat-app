@@ -1,18 +1,38 @@
-
+from dotenv import load_dotenv
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l9!l2+@jwy*@+3ws8p9yj&=x#!7*lg$z^ua(is_czvjjaila2l'
-
+SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ENVIRONMENT = os.environ.get('ENVIRONMENT')
+
+if ENVIRONMENT == "development":
+    DEBUG = True
+    
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels.layers.InMemoryChannelLayer"
+        }
+    }
+    
+else: 
+    DEBUG = False
+    
+    CHANNEL_LAYERS = {
+        "default": {
+            "BACKEND": "channels.layers.InMemoryChannelLayer"
+        }
+    }
+
 
 ALLOWED_HOSTS = []
 
@@ -21,6 +41,8 @@ ALLOWED_HOSTS = []
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = 'chat-admin'
 LOGOUT_REDIRECT_URL = '/'
+
+# AUTH_USER_MODEL = 'accounts.User'
 
 INSTALLED_APPS = [
     'daphne',
@@ -76,6 +98,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+ASGI_APPLICATION = 'backend.asgi.application'
 
 
 # Database

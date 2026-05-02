@@ -7,14 +7,13 @@ import Navbar from "./components/Navbar.jsx"
 
 function App() {
   return (
-    <Navbar >
-      content = {
+    <Navbar>
+      
         <Routes>
           <Route path="" element={<Home />} />
           <Route path="/about" element={<About />} />
         </Routes>
-      }
-    </Navbar >
+    </Navbar>
   )
 } 
 

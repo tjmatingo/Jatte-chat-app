@@ -15,6 +15,7 @@ const Home = () => {
     };
     
     useEffect(() => {
+        console.log(message);
         GetData();
     }, []);
 
