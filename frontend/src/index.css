@@ -13,15 +13,40 @@
 
 
 body {
-    @apply m-0 bg-background;
+    @apply m-0;
 }
 
 h1, h2, h3, h4, h5, h6, p, .title, .subtitle, .headline {
     @apply text-primary;
 }
 
-h1, .title {
-    @apply text-3xl mb-3;
+.title {
+    @apply text-5xl mb-3;
+}
+
+.hero-title {
+    @apply text-9xl absolute inset-0 top-1/3 left-2/5;
+}
+
+.headline {
+    @apply text-4xl;
+}
+
+.hero-headline {
+    @apply text-lg absolute top-1/5 right-5 w-1/3 text-right;
+}
+
+.hero-subtitle {
+    @apply text-6xl absolute inset-x-0 bottom-16 left-8;
+}
+
+
+.hero-subtitle-r {
+    @apply text-6xl absolute bottom-16 right-8;
+}
+
+.subtitle {
+    @apply text-5xl;
 }
 
 h2 {
@@ -41,9 +66,26 @@ h5 {
     
 }
 .content {
-    @apply m-3 p-20;
+    @apply m-0 p-0 h-screen bg-[url(bg.jpg)] bg-cover bg-local;
 }
 
 .link {
     @apply hover:overline hover:decoration-5 hover:decoration-sky-400 ;
+}
+
+
+.hero, section, .content-sec {
+    @apply p-20;
+}
+
+.hero {
+    @apply h-8/9 backdrop-blur-2xl relative;
+}
+
+section {
+    @apply h-3/4 bg-background;    
+}
+
+article {
+    @apply h-3/4;
 }
