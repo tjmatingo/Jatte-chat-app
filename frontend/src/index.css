@@ -41,7 +41,7 @@ section {
 }
 
 article {
-    @apply h-3/4 relative;
+    @apply h-3/4 relative p-6;
 }
 
 .content {

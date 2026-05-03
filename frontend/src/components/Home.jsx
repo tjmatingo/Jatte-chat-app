@@ -5,9 +5,9 @@ const Home = () => {
     const [message, setMessage] = useState("");
 
     const GetData = () => {
-        api.get("mainChat/")
+        api.get("message/")
             .then((res) => {
-                setMessage(res.data.message);
+                setMessage(res.data);
             })
             .catch((e) => {
                 console.log("Error", e);

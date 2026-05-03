@@ -21,10 +21,21 @@ const About = () => {
     
     return (
         <div className='content'>
-            <h1 className='title'>About Page</h1>
-            <p>{about}</p>
-        </div>
-            
+            <div className="hero">
+                <h1 className="hero-title">About Page</h1>
+
+                <p className="hero-subtitle">This is all about this SITE and how we <u>(I)</u> made it</p>
+                <p className="hero-headline">Find out more by contacting us <u>(me)</u> at : <a href="#">My Email</a></p>
+            </div>
+
+            <section>
+                <h2 className="!text-7xl !italic absolute top-2/5 left-1/7">{about}</h2>
+            </section>
+
+            <article>
+                <h2 className='!text-8xl !text-purple-900 !text-center'><u>WHAT? WHO? WHY?</u></h2>
+            </article>
+        </div> 
     );
 }
  
