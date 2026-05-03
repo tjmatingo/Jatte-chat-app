@@ -3,12 +3,23 @@
 :root {
   --background: #050030;
   --primary: #ebebed;
+  --grad1: #021e2a;
+  --grad2: #A80000;
+  --grad3: #4C0575;
+
+  --ruby: #5e1e1e00;
 }
 
 /* optional Tailwind v4 theme mapping */
 @theme inline {
   --color-background: var(--background);
   --color-primary: var(--primary);
+
+  --color-grad1: var(--grad1);
+  --color-grad2: var(--grad2);
+  --color-grad3: var(--grad3);
+
+  --color-ruby: var(--ruby);
 }
 
 
@@ -16,16 +27,41 @@ body {
     @apply m-0;
 }
 
-h1, h2, h3, h4, h5, h6, p, .title, .subtitle, .headline {
+
+.hero, section, .content-sec {
+    @apply p-20;
+}
+
+.hero {
+    @apply h-8/9 backdrop-blur-2xl relative;
+}
+
+section {
+    @apply h-3/4 bg-background relative;    
+}
+
+article {
+    @apply h-3/4 relative;
+}
+
+.content {
+    @apply m-0 p-0 h-screen bg-[url(bg.jpg)] bg-cover bg-local;
+}
+
+h1, h2, h3, h4, h5, h6, p, .title, .subtitle, .headline .subheadline {
     @apply text-primary;
 }
 
 .title {
-    @apply text-5xl mb-3;
+    @apply text-5xl mb-3 absolute inset-x-0 top-2 left-1/3;
 }
 
 .hero-title {
     @apply text-9xl absolute inset-0 top-1/3 left-2/5;
+}
+
+.topbar {
+    @apply fixed top-0 right-0 left-0 z-1000;
 }
 
 .headline {
@@ -45,8 +81,16 @@ h1, h2, h3, h4, h5, h6, p, .title, .subtitle, .headline {
     @apply text-6xl absolute bottom-16 right-8;
 }
 
+.hero-subtitle, .hero-headline, .hero-subtitle-r {
+    @apply text-rose-300;
+}
+
 .subtitle {
-    @apply text-5xl;
+    @apply absolute text-6xl mt-30 left-1/7 w-2/5;
+}
+
+.subheadline {
+    @apply absolute text-lg mt-30 text-right right-19 w-1/5 text-rose-300;
 }
 
 h2 {
@@ -65,27 +109,41 @@ h5 {
     @apply text-base;
     
 }
-.content {
-    @apply m-0 p-0 h-screen bg-[url(bg.jpg)] bg-cover bg-local;
-}
+
 
 .link {
     @apply hover:overline hover:decoration-5 hover:decoration-sky-400 ;
 }
 
 
-.hero, section, .content-sec {
-    @apply p-20;
+article h3.title {
+    @apply text-indigo-200;
 }
 
-.hero {
-    @apply h-8/9 backdrop-blur-2xl relative;
+.gradArt {
+    @apply bg-gradient-to-r from-grad1 via-grad2 to-grad3 to-90%;
 }
 
-section {
-    @apply h-3/4 bg-background;    
+.title {
+    @apply my-18;
 }
 
-article {
-    @apply h-3/4;
+.block {
+    @apply absolute h-67 w-90 bottom-17 right-0 bg-rose-500 rounded-md shadow-lg shadow-indigo-700 inset-shadow-cyan-700;
+}
+
+.box {
+    @apply h-50 flex flex-row absolute top-2/5 px-7 gap-6;
+}
+
+.block-content {
+    @apply h-120 w-85 p-5 bg-rose-700 opacity-85 rounded-md shadow-lg inset-shadow-indigo-700 hover:mt-3;
+}
+
+.block-content p, .block-content h2 {
+    @apply p-5 text-center;
+}
+
+.block-content h2 {
+    @apply underline underline-offset-6 decoration-3 decoration-wavy;
 }

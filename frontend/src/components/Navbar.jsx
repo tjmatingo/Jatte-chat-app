@@ -8,7 +8,7 @@ const Navbar = (props) => {
 
     return (
         <div>
-            <header className="bg-pink-900">
+            <header className="bg-pink-900 topbar">
                 <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center p-3 lg:px-8">
                     <div className="flex ml-110 gap-5 justify-between">
                         <Link to="/" className="link pt-3 text-sm font-semibold text-primary hover:text-blue-200">Home</Link>
