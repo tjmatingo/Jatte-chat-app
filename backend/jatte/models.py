@@ -7,7 +7,7 @@ from pyuploadcare.dj.models import ImageField # Or FileField for any file type
 class Chat(models.Model):
     uuid = models.CharField(max_length=225)
     name = models.CharField(max_length=50, blank=True, null=True)
-    participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='threads')
+    participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='chats')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -15,7 +15,7 @@ class Chat(models.Model):
         return f"{self.name}"  
    
 class ChatMessage(models.Model): 
-    thread = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL, related_name='sent_messages')
 
     message = models.TextField()
