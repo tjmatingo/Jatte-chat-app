@@ -5,6 +5,7 @@ from pyuploadcare.dj.models import ImageField # Or FileField for any file type
 
 # chatroom  model 
 class Chat(models.Model):
+    uuid = models.CharField(max_length=225)
     name = models.CharField(max_length=50, blank=True, null=True)
     participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='threads')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -12,13 +13,13 @@ class Chat(models.Model):
 
     def __str__(self):
         return f"{self.name}"  
-
-class ChatMessage(models.Model):
+   
+class ChatMessage(models.Model): 
     thread = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL, related_name='sent_messages')
 
     message = models.TextField()
-
+ 
     # Uploadcare field
     # manual_crop can be set to '4:3', '16:9', etc.
     attachment = ImageField(blank=True, null=True, manual_crop="")
