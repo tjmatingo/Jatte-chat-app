@@ -36,6 +36,7 @@ class ChatMessageViewSet(viewsets.ModelViewSet):
 
 class ChatViewSet(viewsets.ModelViewSet):
     serializer_class = ChatSerializer
+    queryset = Chat.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self):
@@ -43,12 +44,40 @@ class ChatViewSet(viewsets.ModelViewSet):
         Return only the chat threads where the 
         current user is listed in participants.
         """
-        return Chat.objects.filter(participants=self.request.user).order_by('-updated_at')
+        return Chat.objects.filter(participants=self.request.user)
 
     def perform_create(self, serializer):
         """
         When creating a new chat, automatically add 
         the creator as a participant.
         """
-        chat = serializer.save()
-        chat.participants.add(self.request.user)
+
+        if serializer.is_valid():
+            chat = serializer.save()
+            chat.participants.add(self.request.user)
+    
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=400)
+            
+
+    def update(self, request, pk=None):
+        chat = self.queryset.get(pk=pk)
+        serializer = self.serializer_class(chat, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=400)
+        
+
+    def retrieve(self, request, pk=None):
+        chat = self.queryset.get(pk=pk)
+        serializer = self.serializer_class(chat)
+        return Response(serializer.data)
+
+    def destroy(self, request, pk=None):
+        chat = self.queryset.get(pk=pk)
+        chat.delete()
+        return Response(status=204)
