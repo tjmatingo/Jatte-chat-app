@@ -1,6 +1,8 @@
 const Create = () => {
     return (
-        <h1>Create Page</h1>
+        <div className="content">
+            <h1>Create Page</h1>
+        </div>
     );
 }
  

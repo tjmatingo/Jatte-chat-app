@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState({});
 
     const GetData = () => {
         api.get("message/")
@@ -66,10 +66,14 @@ const Home = () => {
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut nesciunt excepturi voluptatibus repudiandae cupiditate culpa nobis iure distinctio dolorem cum libero, doloremque, provident neque eum! Repellendus distinctio eligendi neque ullam voluptates tempore. Officia ipsam necessitatibus doloribus id repudiandae magnam aspernatur nam excepturi quam odio! Libero mollitia cumque adipisci nobis eaque recusandae maxime expedita ab ea harum?</p>
                     </div>
 
-                    <h3><Link to='/chat'>Chat Room</Link></h3>
                 </div>
                 
             </article>
+
+            <div className="p-34">
+                <h3 className="!text-red-900"><Link to='/chat'>Chat Room</Link></h3>
+            </div>
+
         </div>
     );
 }

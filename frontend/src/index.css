@@ -145,5 +145,14 @@ article h3.title {
 }
 
 .block-content h2 {
-    @apply underline underline-offset-6 decoration-3 decoration-wavy;
+    @apply underline underline-offset-6 decoration-3 decoration-wavy z-10;
+}
+
+
+.chat-hero {
+    @apply m-0 p-0 h-screen bg-[url(art.svg)] bg-cover bg-local flex flex-col items-center justify-center;
+}
+
+.chatroom-name {
+    @apply text-6xl italic mb-5;
 }
