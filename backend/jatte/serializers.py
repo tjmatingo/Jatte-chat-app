@@ -15,7 +15,7 @@ class ChatMessageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ChatMessage
-        fields = ['id', 'thread', 'sender', 'sender_details', 'message', 'attachment', 'attachment_url', 'timestamp']
+        fields = ['id', 'chat', 'sender', 'sender_details', 'message', 'attachment', 'attachment_url', 'timestamp']
         read_only_fields = ['sender', 'timestamp']
 
     def get_attachment_url(self, obj):

@@ -15,38 +15,82 @@ def jatteAbout(request):
 
 class ChatMessageViewSet(viewsets.ModelViewSet):
     serializer_class = ChatMessageSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
-    def list(self):
+    # so i can use query_params and get_queryset
+    def get_queryset(self):
+        """
+        Base queryset: messages from chats where user participates.
+        Override list() to further filter by chat_id if provided.
+        """
+        return ChatMessage.objects.filter(chat__participants=self.request.user)
+
+    def list(self, request, *args, **kwargs):
         """
         Only return messages from threads where the 
         current user is a participant.
         """
-        queryset = ChatMessage.objects.filter(thread__participants=self.request.user)
-        thread_id = self.request.query_params.get('thread')
-        if thread_id:
-            queryset = queryset.filter(thread_id=thread_id)
-        return queryset
+        queryset = self.filter_queryset(self.get_queryset())
+        chat_id = self.request.query_params.get('chat')
+        if chat_id:
+            queryset = queryset.filter(chat_id=chat_id)
+        serializer_ret = self.get_serializer(queryset, many=True)
+        return Response(serializer_ret.data)
+
     
-    def perform_create(self, serializer):
-        """
-        Automatically set the sender to the logged-in user.
-        """
-        serializer.save(sender=self.request.user)
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            serializer.save(sender=self.request.user)
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=400)
+            
+
+    def update(self, request, pk=None):
+        chat = self.get_queryset(pk=pk)
+        serializer = self.serializer_class(chat, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=400)
+        
+
+    def retrieve(self, request, pk=None):
+        chat = self.get_queryset(pk=pk)
+        serializer = self.serializer_class(chat)
+        return Response(serializer.data)
+
+    def destroy(self, request, pk=None):
+        chat = self.get_queryset(pk=pk)
+        chat.delete()
+        return Response(status=204)
 
 class ChatViewSet(viewsets.ModelViewSet):
     serializer_class = ChatSerializer
-    queryset = Chat.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
-    def list(self):
+    # so i can use query_params and get_queryset
+    def get_queryset(self):
+        """
+        Base queryset: messages from chats where user participates.
+        Override list() to further filter by chat_id if provided.
+        """
+        return Chat.objects.all()
+
+    def list(self, request, *args, **kwargs):
         """
         Return only the chat threads where the 
         current user is listed in participants.
         """
-        return Chat.objects.filter(participants=self.request.user)
-
-    def perform_create(self, serializer):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer_ret = self.get_serializer(queryset, many=True)
+        return Response(serializer_ret.data)
+    
+    def create(self, serializer):
         """
         When creating a new chat, automatically add 
         the creator as a participant.
@@ -59,10 +103,12 @@ class ChatViewSet(viewsets.ModelViewSet):
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=400)
+    
+    
             
 
     def update(self, request, pk=None):
-        chat = self.queryset.get(pk=pk)
+        chat = self.get_queryset(pk=pk)
         serializer = self.serializer_class(chat, data=request.data)
 
         if serializer.is_valid():
@@ -73,11 +119,11 @@ class ChatViewSet(viewsets.ModelViewSet):
         
 
     def retrieve(self, request, pk=None):
-        chat = self.queryset.get(pk=pk)
+        chat = self.get_queryset(pk=pk)
         serializer = self.serializer_class(chat)
         return Response(serializer.data)
 
     def destroy(self, request, pk=None):
-        chat = self.queryset.get(pk=pk)
+        chat = self.get_queryset(pk=pk)
         chat.delete()
         return Response(status=204)
