@@ -43,7 +43,7 @@ const Chat = () => {
             </div>
 
             <div className="flex flex-row">
-                <input type="text" className=" fixed left-3 bottom-3 w-10/12 rounded-xl bg-gray-100 text-black p-2" name="message" id="chat-text" aria-multiline/>
+                <input type="text" className=" fixed left-3 bottom-3 w-10/12 rounded-xl bg-gray-100 text-black p-2" name="message" id="chat-text" placeholder="Something to say?"/>
                 <button className="fixed right-6 bottom-12 w-auto h-2 "><img  className="h-10" src="src/assets/send.svg" alt="sendbutton" /></button>
             </div>
         </div>
