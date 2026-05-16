@@ -154,5 +154,9 @@ article h3.title {
 }
 
 .chatroom-name {
-    @apply text-6xl italic mb-5;
+    @apply text-6xl italic my-6 py-3;
+}
+
+.chat-log {
+    @apply overflow-scroll
 }
