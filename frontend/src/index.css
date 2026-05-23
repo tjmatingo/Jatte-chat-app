@@ -133,7 +133,7 @@ article h3.title {
 }
 
 .box {
-    @apply h-50 flex flex-row absolute top-2/5 px-7 gap-6;
+    @apply h-auto flex flex-wrap absolute justify-center top-2/5 px-7 gap-6;
 }
 
 .block-content {
