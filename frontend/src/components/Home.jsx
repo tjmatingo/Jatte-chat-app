@@ -38,8 +38,10 @@ const Home = () => {
 
 
                 <div className="block">
-                    <div className="p-2 box-border border-2 border-white">
+                    <div className="p-2 box-border h-full border-5 border-purple-500 rounded">
                         <h3 className="text-weight-400"><Link to='/chat'>Go to Chat Room</Link></h3>
+                        <h3 className="text-weight-400"><Link to='/'>Create Chat Room</Link></h3>
+
                     </div>
                 </div>
             </section>

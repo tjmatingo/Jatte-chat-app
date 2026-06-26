@@ -86,11 +86,11 @@ h1, h2, h3, h4, h5, h6, p, .title, .subtitle, .headline .subheadline {
 }
 
 .subtitle {
-    @apply absolute text-6xl mt-30 left-1/7 w-2/5;
+    @apply absolute text-4xl lg:text-6xl mt-15 left-1/7 w-2/5;
 }
 
 .subheadline {
-    @apply absolute text-lg mt-30 text-right right-19 w-1/5 text-rose-300;
+    @apply absolute text-lg mt-15 text-left right-32 w-1/5 text-rose-300;
 }
 
 h2 {
@@ -129,7 +129,7 @@ article h3.title {
 }
 
 .block {
-    @apply absolute h-67 w-90 bottom-17 right-0 bg-rose-500 rounded-md shadow-lg shadow-indigo-700 inset-shadow-cyan-700;
+    @apply absolute h-49 md:h-56 lg:h-67 w-50 md:w-70 lg:w-90 bottom-17 right-0 bg-purple-900 rounded-md shadow-lg shadow-indigo-700 inset-shadow-cyan-700;
 }
 
 .box {
