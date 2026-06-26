@@ -73,12 +73,12 @@ h1, h2, h3, h4, h5, h6, p, .title, .subtitle, .headline .subheadline {
 }
 
 .hero-subtitle {
-    @apply text-6xl absolute inset-x-0 bottom-16 left-8;
+    @apply absolute inset-x-0 bottom-16 left-8 text-xl md:text-4xl lg:text-6xl;
 }
 
 
 .hero-subtitle-r {
-    @apply text-6xl absolute bottom-16 right-8;
+    @apply absolute bottom-16 right-8 text-xl md:text-4xl lg:text-6xl;
 }
 
 .hero-subtitle, .hero-headline, .hero-subtitle-r {
